@@ -100,7 +100,7 @@ fmt.Println(plaintext = bobPlaintext)
 
 ## Security approach
 
-We have been as conservative as possible when creating this library.  For example, we have only used the go standard library and golang.org/x/crypto, and have not used any third party cryptography libraries to create this package.
+As mentioned above, we have been as conservative as possible when creating this library.  For example, we have only used the go standard library and golang.org/x/crypto, and have not used any third party cryptography libraries to create this package.
 
 Please notify us of any security issues by creating a github issue. Please propose how you would like to securely communicate with us (via email or other communication method). Please do not post the security issue on github.  
 
