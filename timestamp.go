@@ -1,29 +1,48 @@
 package keyexchange
 
 import (
+	"fmt"
 	"strconv"
 	"time"
 )
 
 // AuthTimestamp converts additionalData ([]byte) into an int64 timestamp,
-// ensurest that this timestamp is after the latestTimestamp,
+// ensures that this timestamp is after the latestTimestamp,
 // and ensures the timestamp is within the last 10 milliseconds
-func AuthTimestamp(additionalData []byte, latestTimestamp int64) (bool, int64, error) {
+func AuthTimestamp(additionalData []byte, latestTimestamp int64) (ok bool, ts int64, err error) {
 
-	// Only process new messages
-	i, err := strconv.ParseInt(string(additionalData), 10, 64)
+	// Parse int64
+	ts, err = strconv.ParseInt(string(additionalData), 10, 64)
 	if err != nil {
 		return false, 0, err
 	}
-	if i <= latestTimestamp {
-		return false, 0, nil
+
+	// Only process new messages
+	err = authTimestampIsValidCheck(ts, latestTimestamp)
+	if err != nil {
+		fmt.Println(err.Error())
+		return false, 0, err
 	}
+	return true, ts, nil
+}
+
+func authTimestampIsValidCheck(ts, latestTimestamp int64) (err error) {
+
+	// Check against latest timestamp
+	if i <= latestTimestamp {
+		return fmt.Errorf("timestamp expired")
+	}
+	
 	// Allow up to 10 milliseconds of jitter
 	delta := time.Now().UTC().UnixMilli() - i
-	if delta < 0 || delta > 10 {
-		return false, 0, nil
+	switch {
+	case delta < 0:
+		return fmt.Errorf("timestamp in the past error")
+	case delta > 10:
+		return fmt.Errorf("timestamp in the future error")
+	default:
 	}
-	return true, i, nil
+	return nil
 }
 
 // CurrentTimestamp is the current time since 1970 in milliseconds as an int64.
