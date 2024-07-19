@@ -29,12 +29,12 @@ func AuthTimestamp(additionalData []byte, latestTimestamp int64) (ok bool, ts in
 func authTimestampIsValidCheck(ts, latestTimestamp int64) (err error) {
 
 	// Check against latest timestamp
-	if i <= latestTimestamp {
+	if ts <= latestTimestamp {
 		return fmt.Errorf("timestamp expired")
 	}
-	
+
 	// Allow up to 10 milliseconds of jitter
-	delta := time.Now().UTC().UnixMilli() - i
+	delta := time.Now().UTC().UnixMilli() - ts
 	switch {
 	case delta < 0:
 		return fmt.Errorf("timestamp in the past error")
