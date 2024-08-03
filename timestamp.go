@@ -33,12 +33,12 @@ func authTimestampIsValidCheck(ts, latestTimestamp int64) (err error) {
 		return fmt.Errorf("timestamp expired")
 	}
 
-	// Allow up to 20 milliseconds of jitter
+	// Allow up to 500 milliseconds of jitter
 	delta := time.Now().UTC().UnixMilli() - ts
 	switch {
-	case delta < 0:
+	case delta < 500:
 		return fmt.Errorf("timestamp in the past error")
-	case delta > 20:
+	case delta > 500:
 		return fmt.Errorf("timestamp in the future error")
 	default:
 	}
