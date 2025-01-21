@@ -94,8 +94,8 @@ if err != nil {
     panic(err)
 }
 
-fmt.Println(plaintext = alicePlaintext)
-fmt.Println(plaintext = bobPlaintext)
+fmt.Println(plaintext == alicePlaintext)
+fmt.Println(plaintext == bobPlaintext)
 ```
 
 ## Security approach
