@@ -107,7 +107,7 @@ Please notify us of any security issues by creating a github issue. Please propo
 ## Why not just use HPKE?
 
 Because:
-- when this library was written, [HPKE](https://developer.apple.com/documentation/cryptokit/hpke) is in beta in Apple's Cryptokit library; and
+- when this library was written, [HPKE](https://developer.apple.com/documentation/cryptokit/hpke) was in beta in Apple's Cryptokit library; and
 - when this library was written, there was no HPKE implementation in golang's standard library, or even in golang.org/x/crypto; and
 - using [HPKE](https://developer.apple.com/documentation/cryptokit/hpke) does not allow any messages to be missed or dropped, and one of the author's use-case for this library *requires* some messages to be able to be missed or dropped (for example, this is useful for [calmdocs/SwiftPollManager](https://github.com/calmdocs/SwiftPollManager) and [calmdocs/SwiftStreamManager](https://github.com/calmdocs/SwiftStreamManager)).
 
