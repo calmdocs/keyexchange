@@ -26,7 +26,7 @@ aliceStore, err := New(
     hash,
     kdf,
     aead,
-    "",
+    "", // a new public key is created if this string is left empty
 )
 if err != nil {
     panic(err)
@@ -38,7 +38,7 @@ bobStore, err := New(
     hash,
     kdf,
     aead,
-    "",
+    "", // a new public key is created if this string is left empty
 )
 if err != nil {
     panic(err)
@@ -106,9 +106,9 @@ Please notify us of any security issues by creating a github issue. Please propo
 
 ## Why not just use HPKE?
 
-Because, when this library was written:
-- [HPKE](https://developer.apple.com/documentation/cryptokit/hpke) is in beta in Apple's Cryptokit library; and
-- there is no HPKE implementation in golang's standard library, or even in golang.org/x/crypto.
+Because:
+- when this library was written, [HPKE](https://developer.apple.com/documentation/cryptokit/hpke) is in beta in Apple's Cryptokit library; and
+- when this library was written, there was no HPKE implementation in golang's standard library, or even in golang.org/x/crypto.
 
 If the above changes, we will probably add [HPKE](https://developer.apple.com/documentation/cryptokit/hpke) to this library as well as to [calmdocs/SwiftKeyExchange](https://github.com/calmdocs/SwiftKeyExchange).  We will also try to follow SemVer, but may not if there are security issues and/or as the underlying encryption used by this library becomes insecure over time. 
 
