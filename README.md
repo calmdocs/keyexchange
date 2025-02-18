@@ -2,7 +2,7 @@
 
 [![godoc](https://godoc.org/github.com/calmdocs/keyexchange?status.svg)](https://godoc.org/github.com/calmdocs/keyexchange)
 
-Swift Diffie–Hellman key exchange ([DHKE](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)) library built using the go standard library and golang.org/x/crypto.
+Golang Diffie–Hellman key exchange ([DHKE](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)) library built using the go standard library and golang.org/x/crypto.
 
 Designed to mirror the Swift [calmdocs/SwiftKeyExchange](https://github.com/calmdocs/SwiftKeyExchange) library.  For example we use the same test keys, nonces, and results in this library as we use in the Swift [calmdocs/SwiftKeyExchange](https://github.com/calmdocs/SwiftKeyExchange) library.
 
